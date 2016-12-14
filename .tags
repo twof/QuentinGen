@@ -1,0 +1,39 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Flask	MarkovChain/server.py	/^from flask import Flask, request$/;"	i
+Graph	MarkovChain/histogram.py	/^class Graph:$/;"	c
+Node	MarkovChain/histogram.py	/^class Node:$/;"	c
+__init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:Graph
+__init__	MarkovChain/histogram.py	/^    def __init__(self, word):$/;"	m	class:Node
+app	MarkovChain/server.py	/^app = Flask(__name__)$/;"	v
+concatinate_string_to_file	Util/srt_sanitizer.py	/^def concatinate_string_to_file(str, file):$/;"	f
+gen_histogram_graph	MarkovChain/histogram.py	/^def gen_histogram_graph(tokens):$/;"	f
+gen_histogram_graph	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
+get_rand_word	MarkovChain/server.py	/^def get_rand_word():$/;"	f
+get_root	MarkovChain/server.py	/^def get_root():$/;"	f
+insert_word	MarkovChain/histogram.py	/^    def insert_word(self, word):$/;"	m	class:Graph
+open_doc	MarkovChain/histogram.py	/^def open_doc(source_text):$/;"	f
+open_doc	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
+open_doc	Util/srt_sanitizer.py	/^def open_doc(source_text):$/;"	f
+orginize_sentence_end	Util/srt_sanitizer.py	/^def orginize_sentence_end(file):$/;"	f
+os	MarkovChain/server.py	/^import os$/;"	i
+print_graph	MarkovChain/histogram.py	/^    def print_graph(self):$/;"	m	class:Graph
+print_node	MarkovChain/histogram.py	/^    def print_node(self):$/;"	m	class:Node
+pysrt	Util/srt_sanitizer.py	/^import pysrt$/;"	i
+rand_next_node	MarkovChain/histogram.py	/^    def rand_next_node(self):$/;"	m	class:Node
+rand_next_node	MarkovChain/histogram.py	/^    def rand_next_node(self, node):$/;"	m	class:Graph
+random	MarkovChain/histogram.py	/^import random$/;"	i
+random	MarkovChain/sampling.py	/^import random$/;"	i
+re	Util/srt_sanitizer.py	/^import re$/;"	i
+request	MarkovChain/server.py	/^from flask import Flask, request$/;"	i
+sanitize	Util/srt_sanitizer.py	/^def sanitize(subs):$/;"	f
+sentence_from_graph	MarkovChain/sampling.py	/^def sentence_from_graph(graph, sentence_len):$/;"	f
+sentence_from_graph	MarkovChain/server.py	/^from sampling import sentence_from_graph$/;"	i
+tokenize_and_clean_subs	Util/srt_sanitizer.py	/^def tokenize_and_clean_subs(sanitized_subs):$/;"	f
+update_sanitized_corpus	Util/srt_sanitizer.py	/^def update_sanitized_corpus(the_file, text):$/;"	f
+upsert_vert	MarkovChain/histogram.py	/^    def upsert_vert(self, prev_word, subsequent_word):$/;"	m	class:Graph
+upsert_vert	MarkovChain/histogram.py	/^    def upsert_vert(self, the_word, node_dict):$/;"	m	class:Node
