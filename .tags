@@ -14,8 +14,8 @@ __init__	MarkovChain/histogram.py	/^    def __init__(self, word):$/;"	m	class:_N
 _tokenize_line	MarkovChain/histogram.py	/^    def _tokenize_line(line):$/;"	m	class:Markov_Model
 app	MarkovChain/server.py	/^app = Flask(__name__)$/;"	v
 concatinate_string_to_file	Util/srt_sanitizer.py	/^def concatinate_string_to_file(str, file):$/;"	f
-gen_histogram_graph	MarkovChain/histogram.py	/^    def gen_histogram_graph(self, text):$/;"	m	class:Markov_Model
 gen_histogram_graph	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
+gen_markov_model	MarkovChain/histogram.py	/^    def gen_markov_model(self, text):$/;"	m	class:Markov_Model
 get_rand_word	MarkovChain/server.py	/^def get_rand_word():$/;"	f
 get_root	MarkovChain/server.py	/^def get_root():$/;"	f
 insert_word	MarkovChain/histogram.py	/^    def insert_word(self, word):$/;"	m	class:_Graph

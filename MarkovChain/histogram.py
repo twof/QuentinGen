@@ -102,31 +102,26 @@ class Markov_Model:
     # generates a graph based on the source material passed to it
     # either as a single line of text or multiple lines like if a
     # docment was opened
-    def gen_histogram_graph(self, text):
+    def gen_markov_model(self, text):
         lines = text.split("\n")
 
         for line in lines:
+            prev_word = "."
+            tokens = self._tokenize_line(line)
+            for token in tokens:
+                self.graph.insert_word(token)
+                self.graph.upsert_vert(prev_word, token)
+                prev_word = token
 
-            if stripped_word != '':
-                self.graph.insert_word(stripped_word)
-
-                if is_end_thought:
-                    is_end_thought = False
-                    break
-                elif previous_word == "":
-                    previous_word = stripped_word
-                else:
-                    self.graph.upsert_vert(previous_word, stripped_word)
-                    previous_word = stripped_word
-
-                if set_end_thought:
-                    is_end_thought = True
+                if token is tokens[-1]:
+                    self.graph.upsert_vert(prev_word, "?")
 
     def _tokenize_line(line):
-        p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?"\
-            ")+)|((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
+        p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|"\
+            "((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)|"\
+            "((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
         pattern = re.compile(p)
-        return pattern.findall(sanitized_subs)
+        return pattern.findall(line)
 
 
 # TODO:
