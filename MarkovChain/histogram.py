@@ -1,4 +1,5 @@
 import random
+import re
 
 
 # Node class. Contains the word and a dictionary of each possible
@@ -101,17 +102,10 @@ class Markov_Model:
     # generates a graph based on the source material passed to it
     # either as a single line of text or multiple lines like if a
     # docment was opened
-    def gen_histogram_graph(self, tokens):
-        for token in tokens:
-            set_end_thought = False
+    def gen_histogram_graph(self, text):
+        lines = text.split("\n")
 
-            if word[:-1] in end_characters:
-                set_end_thought = True
-
-            stripped_word = ''.join([i for i in word if i.isalpha()
-                                    or ((i in mid_word_characters
-                                        and len(word) > 1))]) \
-                            .lower()
+        for line in lines:
 
             if stripped_word != '':
                 self.graph.insert_word(stripped_word)
@@ -127,6 +121,12 @@ class Markov_Model:
 
                 if set_end_thought:
                     is_end_thought = True
+
+    def _tokenize_line(line):
+        p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?"\
+            ")+)|((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
+        pattern = re.compile(p)
+        return pattern.findall(sanitized_subs)
 
 
 # TODO:

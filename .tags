@@ -11,9 +11,10 @@ _Node	MarkovChain/histogram.py	/^class _Node:$/;"	c
 __init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:Markov_Model
 __init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:_Graph
 __init__	MarkovChain/histogram.py	/^    def __init__(self, word):$/;"	m	class:_Node
+_tokenize_line	MarkovChain/histogram.py	/^    def _tokenize_line(line):$/;"	m	class:Markov_Model
 app	MarkovChain/server.py	/^app = Flask(__name__)$/;"	v
 concatinate_string_to_file	Util/srt_sanitizer.py	/^def concatinate_string_to_file(str, file):$/;"	f
-gen_histogram_graph	MarkovChain/histogram.py	/^    def gen_histogram_graph(self, tokens):$/;"	m	class:Markov_Model
+gen_histogram_graph	MarkovChain/histogram.py	/^    def gen_histogram_graph(self, text):$/;"	m	class:Markov_Model
 gen_histogram_graph	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
 get_rand_word	MarkovChain/server.py	/^def get_rand_word():$/;"	f
 get_root	MarkovChain/server.py	/^def get_root():$/;"	f
@@ -29,6 +30,7 @@ rand_next_node	MarkovChain/histogram.py	/^    def rand_next_node(self):$/;"	m	cl
 rand_next_node	MarkovChain/histogram.py	/^    def rand_next_node(self, node):$/;"	m	class:_Graph
 random	MarkovChain/histogram.py	/^import random$/;"	i
 random	MarkovChain/sampling.py	/^import random$/;"	i
+re	MarkovChain/histogram.py	/^import re$/;"	i
 re	Util/srt_sanitizer.py	/^import re$/;"	i
 request	MarkovChain/server.py	/^from flask import Flask, request$/;"	i
 sanitize	Util/srt_sanitizer.py	/^def sanitize(subs):$/;"	f
