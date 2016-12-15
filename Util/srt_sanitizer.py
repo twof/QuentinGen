@@ -26,13 +26,6 @@ def concatinate_string_to_file(str, file):
         corpus.write(str)
 
 
-def tokenize_and_clean_subs(sanitized_subs):
-    p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?"\
-        ")+)|((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
-    pattern = re.compile(p)
-    return pattern.findall(sanitized_subs)
-
-
 def orginize_sentence_end(file):
     with open(file, "r") as corpus:
         data = str(corpus.read())

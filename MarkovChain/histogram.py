@@ -3,7 +3,7 @@ import random
 
 # Node class. Contains the word and a dictionary of each possible
 # subsequent word
-class Node:
+class _Node:
     def __init__(self, word):
         # dictionary where the key is the word
         # and the value is [Node, frequency]
@@ -55,7 +55,7 @@ class Node:
 
 
 # Graph class. Just holds all the nodes.
-class Graph:
+class _Graph:
     def __init__(self):
         # dictionary where the keys are words as strings and values
         # are node objects
@@ -67,7 +67,7 @@ class Graph:
     # within the graph
     def insert_word(self, word):
         if word not in self.nodes:
-            self.nodes[word] = Node(word)
+            self.nodes[word] = _Node(word)
 
     # abstraction of the node.upsert_vert() fuction
     # trying to minimize interaction with raw nodes
@@ -94,46 +94,39 @@ class Graph:
             self.nodes[key].print_node()
 
 
-# opens a document and returns lines
-def open_doc(source_text):
-    doc = open(source_text)
-    lines = doc.readlines()
-    return lines
+class Markov_Model:
+    def __init__(self):
+        self.graph = _Graph()
 
+    # generates a graph based on the source material passed to it
+    # either as a single line of text or multiple lines like if a
+    # docment was opened
+    def gen_histogram_graph(self, tokens):
+        for token in tokens:
+            set_end_thought = False
 
-# generates a graph based on the source material passed to it
-# either as a single line of text or multiple lines like if a
-# docment was opened
-def gen_histogram_graph(tokens):
-    graph = Graph()
-    previous_word = ""
-    is_end_thought = False
+            if word[:-1] in end_characters:
+                set_end_thought = True
 
-    for token in tokens:
-        set_end_thought = False
+            stripped_word = ''.join([i for i in word if i.isalpha()
+                                    or ((i in mid_word_characters
+                                        and len(word) > 1))]) \
+                            .lower()
 
-        if word[:-1] in end_characters:
-            set_end_thought = True
+            if stripped_word != '':
+                self.graph.insert_word(stripped_word)
 
-        stripped_word = ''.join([i for i in word if i.isalpha()
-                                or ((i in mid_word_characters
-                                    and len(word) > 1))]) \
-                        .lower()
+                if is_end_thought:
+                    is_end_thought = False
+                    break
+                elif previous_word == "":
+                    previous_word = stripped_word
+                else:
+                    self.graph.upsert_vert(previous_word, stripped_word)
+                    previous_word = stripped_word
 
-        if stripped_word != '':
-            graph.insert_word(stripped_word)
-
-            if is_end_thought:
-                is_end_thought = False
-                break
-            elif previous_word == "":
-                previous_word = stripped_word
-            else:
-                graph.upsert_vert(previous_word, stripped_word)
-                previous_word = stripped_word
-
-            if set_end_thought:
-                is_end_thought = True
+                if set_end_thought:
+                    is_end_thought = True
 
 
 # TODO:
