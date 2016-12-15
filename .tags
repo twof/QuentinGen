@@ -11,7 +11,7 @@ _Node	MarkovChain/histogram.py	/^class _Node:$/;"	c
 __init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:Markov_Model
 __init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:_Graph
 __init__	MarkovChain/histogram.py	/^    def __init__(self, word):$/;"	m	class:_Node
-_tokenize_line	MarkovChain/histogram.py	/^    def _tokenize_line(line):$/;"	m	class:Markov_Model
+_tokenize_line	MarkovChain/histogram.py	/^    def _tokenize_line(self, line):$/;"	m	class:Markov_Model
 app	MarkovChain/server.py	/^app = Flask(__name__)$/;"	v
 concatinate_string_to_file	Util/srt_sanitizer.py	/^def concatinate_string_to_file(str, file):$/;"	f
 gen_histogram_graph	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i

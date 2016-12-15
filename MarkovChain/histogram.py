@@ -98,6 +98,10 @@ class _Graph:
 class Markov_Model:
     def __init__(self):
         self.graph = _Graph()
+        p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|"\
+            "((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)|"\
+            "((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
+        self.pattern = re.compile(p)
 
     # generates a graph based on the source material passed to it
     # either as a single line of text or multiple lines like if a
@@ -116,12 +120,8 @@ class Markov_Model:
                 if token is tokens[-1]:
                     self.graph.upsert_vert(prev_word, "?")
 
-    def _tokenize_line(line):
-        p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|"\
-            "((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)|"\
-            "((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
-        pattern = re.compile(p)
-        return pattern.findall(line)
+    def _tokenize_line(self, line):
+        return self.pattern.findall(line)
 
 
 # TODO:
