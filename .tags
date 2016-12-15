@@ -8,14 +8,16 @@ Flask	MarkovChain/server.py	/^from flask import Flask, request$/;"	i
 Markov_Model	MarkovChain/histogram.py	/^class Markov_Model:$/;"	c
 _Graph	MarkovChain/histogram.py	/^class _Graph:$/;"	c
 _Node	MarkovChain/histogram.py	/^class _Node:$/;"	c
-__init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:Markov_Model
 __init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:_Graph
+__init__	MarkovChain/histogram.py	/^    def __init__(self, corpus):$/;"	m	class:Markov_Model
 __init__	MarkovChain/histogram.py	/^    def __init__(self, word):$/;"	m	class:_Node
+_gen_markov_model	MarkovChain/histogram.py	/^    def _gen_markov_model(self, text):$/;"	m	class:Markov_Model
+_open_doc	MarkovChain/histogram.py	/^    def _open_doc(source_text):$/;"	m	class:Markov_Model
 _tokenize_line	MarkovChain/histogram.py	/^    def _tokenize_line(self, line):$/;"	m	class:Markov_Model
 app	MarkovChain/server.py	/^app = Flask(__name__)$/;"	v
 concatinate_string_to_file	Util/srt_sanitizer.py	/^def concatinate_string_to_file(str, file):$/;"	f
 gen_histogram_graph	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
-gen_markov_model	MarkovChain/histogram.py	/^    def gen_markov_model(self, text):$/;"	m	class:Markov_Model
+gen_sentence	MarkovChain/histogram.py	/^    def gen_sentence(self):$/;"	m	class:Markov_Model
 get_rand_word	MarkovChain/server.py	/^def get_rand_word():$/;"	f
 get_root	MarkovChain/server.py	/^def get_root():$/;"	f
 insert_word	MarkovChain/histogram.py	/^    def insert_word(self, word):$/;"	m	class:_Graph

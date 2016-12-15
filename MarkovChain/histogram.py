@@ -80,12 +80,7 @@ class _Graph:
     # If that's the case, we start at a new random location
     # within the graph
     def rand_next_node(self, node):
-        next_node = node.rand_next_node()
-
-        if next_node == -1:
-            next_node = self.nodes[random.choice(list(self.nodes.keys()))]
-
-        return next_node
+        return node.rand_next_node()
 
     # Runs through each node in the graph and prints it out
     # Also used primarily for debugging
@@ -96,17 +91,29 @@ class _Graph:
 
 
 class Markov_Model:
-    def __init__(self):
+    def __init__(self, corpus):
         self.graph = _Graph()
         p = "(?:(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)')"\
             "|((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)"\
             "|((?:['\$]?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
         self.pattern = re.compile(p)
+        self.text = ""
+
+        with open(corpus, "r") as corpus:
+            self.text = str(corpus.read())
+
+        self.gen_markov_model(self.text)
+
+    def gen_sentence(self):
+        sentence = ""
+        current_node = self.graph.nodes["."]
+        while current_node.word is not "?":
+            current_node = self.graph.rand_next_node(current_node)
 
     # generates a graph based on the source material passed to it
     # either as a single line of text or multiple lines like if a
     # docment was opened
-    def gen_markov_model(self, text):
+    def _gen_markov_model(self, text):
         lines = text.split("\n")
 
         for line in lines:
@@ -122,6 +129,11 @@ class Markov_Model:
 
     def _tokenize_line(self, line):
         return self.pattern.findall(line)
+
+    def _open_doc(source_text):
+        doc = open(source_text)
+        lines = doc.readlines()
+        return lines
 
 
 # TODO:
