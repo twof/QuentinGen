@@ -98,9 +98,9 @@ class _Graph:
 class Markov_Model:
     def __init__(self):
         self.graph = _Graph()
-        p = "(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)'|"\
-            "((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)|"\
-            "((?:'?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
+        p = "(?:(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)')"\
+            "|((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)"\
+            "|((?:['\$]?[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)+))"
         self.pattern = re.compile(p)
 
     # generates a graph based on the source material passed to it
