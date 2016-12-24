@@ -21,6 +21,7 @@ gen_sentence	MarkovChain/histogram.py	/^    def gen_sentence(self):$/;"	m	class:
 get_rand_word	MarkovChain/server.py	/^def get_rand_word():$/;"	f
 get_root	MarkovChain/server.py	/^def get_root():$/;"	f
 insert_word	MarkovChain/histogram.py	/^    def insert_word(self, word):$/;"	m	class:_Graph
+mm	MarkovChain/histogram.py	/^mm = Markov_Model("sanitized_corpus.txt")$/;"	v
 open_doc	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
 open_doc	Util/srt_sanitizer.py	/^def open_doc(source_text):$/;"	f
 orginize_sentence_end	Util/srt_sanitizer.py	/^def orginize_sentence_end(file):$/;"	f

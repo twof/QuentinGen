@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 import re
 
@@ -102,13 +103,20 @@ class Markov_Model:
         with open(corpus, "r") as corpus:
             self.text = str(corpus.read())
 
-        self.gen_markov_model(self.text)
+        self._gen_markov_model(self.text)
 
     def gen_sentence(self):
-        sentence = ""
+        sentence = []
         current_node = self.graph.nodes["."]
+
         while current_node.word is not "?":
             current_node = self.graph.rand_next_node(current_node)
+            if current_node.word is "?":
+                break
+            else:
+                sentence.append(current_node.word)
+
+        return " ".join(sentence) + "."
 
     # generates a graph based on the source material passed to it
     # either as a single line of text or multiple lines like if a
@@ -128,7 +136,9 @@ class Markov_Model:
                     self.graph.upsert_vert(prev_word, "?")
 
     def _tokenize_line(self, line):
-        return self.pattern.findall(line)
+        words = map(lambda x: filter(lambda item: item is not "", x)[0],
+                    self.pattern.findall(line))
+        return words
 
     def _open_doc(source_text):
         doc = open(source_text)
@@ -136,5 +146,5 @@ class Markov_Model:
         return lines
 
 
-# TODO:
-# Fix the ingestion so that it stops recording subsequence at periods
+mm = Markov_Model("sanitized_corpus.txt")
+print(mm.gen_sentence())

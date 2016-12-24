@@ -30,10 +30,11 @@ def orginize_sentence_end(file):
     with open(file, "r") as corpus:
         data = str(corpus.read())
         return (data.replace("\n", " ")
-                .replace("? ", "?\n")
-                .replace("! ", "!\n")
+                .replace("\"", "\n\"")
+                .replace("?", "?\n")
+                .replace("!", "!\n")
                 .replace("...", "")
-                .replace(". ", ".\n"))
+                .replace(".", ".\n"))
 
 
 def update_sanitized_corpus(the_file, text):
