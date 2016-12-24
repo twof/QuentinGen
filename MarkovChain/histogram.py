@@ -91,8 +91,21 @@ class _Graph:
             self.nodes[key].print_node()
 
 
+class Queue:
+    def __init__(self, size_cap):
+        self.size_cap = size_cap
+        self.contents = []
+
+    def enqueue(self, item):
+        self.contents.append(item)
+
+        if len(self.contents) > self.size_cap:
+            self.contents.pop(0)
+
+
 class Markov_Model:
-    def __init__(self, corpus):
+    def __init__(self, corpus, order):
+        self.order = order
         self.graph = _Graph()
         p = "(?:(?:'([\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*)')"\
             "|((?:[\wÀ-ÿ]+[\'\-]?[\wÀ-ÿ]*[\'\-]?)+)"\
@@ -123,11 +136,13 @@ class Markov_Model:
     # docment was opened
     def _gen_markov_model(self, text):
         lines = text.split("\n")
+        queue = Queue(self.order)
 
         for line in lines:
             prev_word = "."
             tokens = self._tokenize_line(line)
             for token in tokens:
+                queue.enqueue
                 self.graph.insert_word(token)
                 self.graph.upsert_vert(prev_word, token)
                 prev_word = token
