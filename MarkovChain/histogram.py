@@ -28,6 +28,8 @@ class _Node:
     # based off of the frequency of the the verticies
     def rand_next_node(self):
         if self.total_subsequence_count-1 == -1:
+            print(self.word)
+            print(self.verticies)
             return -1
 
         rand_index = random.randint(0, self.total_subsequence_count-1)
@@ -46,11 +48,11 @@ class _Node:
     # someone else wanted it
     def print_node(self):
         to_print = ""
-        to_print += self.word
+        to_print += repr(self.word)
         to_print += " {"
 
         for key, value in self.verticies.items():
-            to_print += key + ", "
+            to_print += repr(key) + ", "
 
         to_print += "}"
         print(to_print)
@@ -62,8 +64,8 @@ class _Graph:
         # dictionary where the keys are words as strings and values
         # are node objects
         self.nodes = {}
-        self.insert_word(".")  # indicates the start of a thought
-        self.insert_word("?")  # indicates the end of a thought
+        self.insert_word(".")
+        self.insert_word("?")
 
     # inserts a word into the graph if it doesn't already exist
     # within the graph
@@ -121,13 +123,16 @@ class Markov_Model:
     def gen_sentence(self):
         sentence = []
         current_node = self.graph.nodes["."]
+        current_node = self.graph.rand_next_node(current_node)
+        sentence.append(current_node.word[0])
 
         while current_node.word is not "?":
-            current_node = self.graph.rand_next_node(current_node)
+
             if current_node.word is "?":
                 break
             else:
-                sentence.append(current_node.word)
+                sentence.append(current_node.word[-1])
+                current_node = self.graph.rand_next_node(current_node)
 
         return " ".join(sentence) + "."
 
@@ -136,19 +141,38 @@ class Markov_Model:
     # docment was opened
     def _gen_markov_model(self, text):
         lines = text.split("\n")
-        queue = Queue(self.order)
 
         for line in lines:
-            prev_word = "."
+            queue = Queue(self.order + 1)
             tokens = self._tokenize_line(line)
-            for token in tokens:
-                queue.enqueue
-                self.graph.insert_word(token)
-                self.graph.upsert_vert(prev_word, token)
-                prev_word = token
 
-                if token is tokens[-1]:
-                    self.graph.upsert_vert(prev_word, "?")
+            for index, token in enumerate(tokens):
+                queue.enqueue(token)
+
+                if len(queue.contents) >= self.order + 1:
+                    if index == self.order:
+                        begin_state = tuple(queue.contents[:2])
+
+                        self.graph.insert_word(begin_state)
+                        self.graph.upsert_vert(".", begin_state)
+                    elif token == tokens[-1]:
+                        prev_state = tuple(queue.contents[:-1])
+                        next_state = tuple(queue.contents[1:])
+
+                        self.graph.insert_word(next_state)
+                        self.graph.insert_word(prev_state)
+                        self.graph.upsert_vert(prev_state, next_state)
+                        self.graph.upsert_vert(next_state, "?")
+                    else:
+                        prev_state = tuple(queue.contents[:-1])
+                        next_state = tuple(queue.contents[1:])
+
+                        self.graph.insert_word(prev_state)
+                        self.graph.insert_word(next_state)
+                        self.graph.upsert_vert(prev_state, next_state)
+        self.graph.print_graph()
+
+        # self.graph.print_graph()
 
     def _tokenize_line(self, line):
         words = map(lambda x: filter(lambda item: item is not "", x)[0],
@@ -161,5 +185,5 @@ class Markov_Model:
         return lines
 
 
-mm = Markov_Model("sanitized_corpus.txt")
+mm = Markov_Model("sanitized_corpus.txt", 2)
 print(mm.gen_sentence())
