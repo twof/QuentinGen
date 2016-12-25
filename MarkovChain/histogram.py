@@ -152,10 +152,13 @@ class Markov_Model:
                 if len(queue.contents) >= self.order + 1:
                     if index == self.order:
                         begin_state = tuple(queue.contents[:2])
+                        next_state = tuple(queue.contents[1:])
 
                         self.graph.insert_word(begin_state)
+                        self.graph.insert_word(next_state)
                         self.graph.upsert_vert(".", begin_state)
-                    elif token == tokens[-1]:
+                        self.graph.upsert_vert(begin_state, next_state)
+                    elif token is tokens[-1]:
                         prev_state = tuple(queue.contents[:-1])
                         next_state = tuple(queue.contents[1:])
 
@@ -170,9 +173,6 @@ class Markov_Model:
                         self.graph.insert_word(prev_state)
                         self.graph.insert_word(next_state)
                         self.graph.upsert_vert(prev_state, next_state)
-        self.graph.print_graph()
-
-        # self.graph.print_graph()
 
     def _tokenize_line(self, line):
         words = map(lambda x: filter(lambda item: item is not "", x)[0],
