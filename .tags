@@ -6,18 +6,15 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 Flask	MarkovChain/server.py	/^from flask import Flask, request$/;"	i
 Graph	MarkovChain/Structures/Graph.py	/^class Graph:$/;"	c
+Graph	MarkovChain/histogram.py	/^from Structures.Graph import Graph$/;"	i
 Markov_Model	MarkovChain/histogram.py	/^class Markov_Model:$/;"	c
 Queue	MarkovChain/Structures/Queue.py	/^class Queue:$/;"	c
 Queue	MarkovChain/histogram.py	/^from Structures.Queue import Queue$/;"	i
-_Graph	MarkovChain/histogram.py	/^class _Graph:$/;"	c
 _Node	MarkovChain/Structures/Graph.py	/^class _Node:$/;"	c
-_Node	MarkovChain/histogram.py	/^class _Node:$/;"	c
 __init__	MarkovChain/Structures/Graph.py	/^    def __init__(self):$/;"	m	class:Graph
 __init__	MarkovChain/Structures/Graph.py	/^    def __init__(self, word):$/;"	m	class:_Node
 __init__	MarkovChain/Structures/Queue.py	/^    def __init__(self, size_cap):$/;"	m	class:Queue
-__init__	MarkovChain/histogram.py	/^    def __init__(self):$/;"	m	class:_Graph
 __init__	MarkovChain/histogram.py	/^    def __init__(self, corpus, order):$/;"	m	class:Markov_Model
-__init__	MarkovChain/histogram.py	/^    def __init__(self, word):$/;"	m	class:_Node
 _gen_markov_model	MarkovChain/histogram.py	/^    def _gen_markov_model(self, text):$/;"	m	class:Markov_Model
 _open_doc	MarkovChain/histogram.py	/^    def _open_doc(source_text):$/;"	m	class:Markov_Model
 _tokenize_line	MarkovChain/histogram.py	/^    def _tokenize_line(self, line):$/;"	m	class:Markov_Model
@@ -29,21 +26,16 @@ gen_sentence	MarkovChain/histogram.py	/^    def gen_sentence(self):$/;"	m	class:
 get_rand_word	MarkovChain/server.py	/^def get_rand_word():$/;"	f
 get_root	MarkovChain/server.py	/^def get_root():$/;"	f
 insert_word	MarkovChain/Structures/Graph.py	/^    def insert_word(self, word):$/;"	m	class:Graph
-insert_word	MarkovChain/histogram.py	/^    def insert_word(self, word):$/;"	m	class:_Graph
 mm	MarkovChain/histogram.py	/^mm = Markov_Model("sanitized_corpus.txt", 2)$/;"	v
 open_doc	MarkovChain/server.py	/^from histogram import gen_histogram_graph, open_doc$/;"	i
 open_doc	Util/srt_sanitizer.py	/^def open_doc(source_text):$/;"	f
 orginize_sentence_end	Util/srt_sanitizer.py	/^def orginize_sentence_end(file):$/;"	f
 os	MarkovChain/server.py	/^import os$/;"	i
 print_graph	MarkovChain/Structures/Graph.py	/^    def print_graph(self):$/;"	m	class:Graph
-print_graph	MarkovChain/histogram.py	/^    def print_graph(self):$/;"	m	class:_Graph
 print_node	MarkovChain/Structures/Graph.py	/^    def print_node(self):$/;"	m	class:_Node
-print_node	MarkovChain/histogram.py	/^    def print_node(self):$/;"	m	class:_Node
 pysrt	Util/srt_sanitizer.py	/^import pysrt$/;"	i
 rand_next_node	MarkovChain/Structures/Graph.py	/^    def rand_next_node(self):$/;"	m	class:_Node
 rand_next_node	MarkovChain/Structures/Graph.py	/^    def rand_next_node(self, node):$/;"	m	class:Graph
-rand_next_node	MarkovChain/histogram.py	/^    def rand_next_node(self):$/;"	m	class:_Node
-rand_next_node	MarkovChain/histogram.py	/^    def rand_next_node(self, node):$/;"	m	class:_Graph
 random	MarkovChain/Structures/Graph.py	/^import random$/;"	i
 random	MarkovChain/histogram.py	/^import random$/;"	i
 random	MarkovChain/sampling.py	/^import random$/;"	i
@@ -56,5 +48,3 @@ sentence_from_graph	MarkovChain/server.py	/^from sampling import sentence_from_g
 update_sanitized_corpus	Util/srt_sanitizer.py	/^def update_sanitized_corpus(the_file, text):$/;"	f
 upsert_vert	MarkovChain/Structures/Graph.py	/^    def upsert_vert(self, prev_word, subsequent_word):$/;"	m	class:Graph
 upsert_vert	MarkovChain/Structures/Graph.py	/^    def upsert_vert(self, the_word, node_dict):$/;"	m	class:_Node
-upsert_vert	MarkovChain/histogram.py	/^    def upsert_vert(self, prev_word, subsequent_word):$/;"	m	class:_Graph
-upsert_vert	MarkovChain/histogram.py	/^    def upsert_vert(self, the_word, node_dict):$/;"	m	class:_Node

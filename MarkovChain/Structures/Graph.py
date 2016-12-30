@@ -26,9 +26,7 @@ class _Node:
     # based off of the frequency of the the verticies
     def rand_next_node(self):
         if self.total_subsequence_count-1 == -1:
-            print(self.word)
-            print(self.verticies)
-            return -1
+            return -1  # This should never trigger under the current model
 
         rand_index = random.randint(0, self.total_subsequence_count-1)
         traversal_index = 0
