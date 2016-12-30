@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import random
 import re
+import random
+from Structures.Queue import Queue
 
 
 # Node class. Contains the word and a dictionary of each possible
@@ -93,18 +94,6 @@ class _Graph:
             self.nodes[key].print_node()
 
 
-class Queue:
-    def __init__(self, size_cap):
-        self.size_cap = size_cap
-        self.contents = []
-
-    def enqueue(self, item):
-        self.contents.append(item)
-
-        if len(self.contents) > self.size_cap:
-            self.contents.pop(0)
-
-
 class Markov_Model:
     def __init__(self, corpus, order):
         self.order = order
@@ -154,10 +143,13 @@ class Markov_Model:
                         begin_state = tuple(queue.contents[:2])
                         next_state = tuple(queue.contents[1:])
 
+                        print(begin_state)
+
                         self.graph.insert_word(begin_state)
                         self.graph.insert_word(next_state)
                         self.graph.upsert_vert(".", begin_state)
                         self.graph.upsert_vert(begin_state, next_state)
+
                     elif token is tokens[-1]:
                         prev_state = tuple(queue.contents[:-1])
                         next_state = tuple(queue.contents[1:])
@@ -173,6 +165,8 @@ class Markov_Model:
                         self.graph.insert_word(prev_state)
                         self.graph.insert_word(next_state)
                         self.graph.upsert_vert(prev_state, next_state)
+        self.graph.print_graph()
+
 
     def _tokenize_line(self, line):
         words = map(lambda x: filter(lambda item: item is not "", x)[0],
