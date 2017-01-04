@@ -60,7 +60,9 @@ class Graph:
         # dictionary where the keys are words as strings and values
         # are node objects
         self.nodes = {}
+        # '.' is used to indicate the beigining of sentence
         self.insert_word(".")
+        # '?' is used to indicate the end of a sentence
         self.insert_word("?")
 
     # inserts a word into the graph if it doesn't already exist

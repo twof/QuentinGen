@@ -1,22 +1,21 @@
-from flask import Flask, request
-from sampling import sentence_from_graph
-from histogram import gen_histogram_graph, open_doc
+from flask import Flask
+from Markov_Model import Markov_Model
 import os
 
 app = Flask(__name__)
 
-
-@app.route("/word", methods=['GET'])
-def get_rand_word():
-    sentence_len = int(request.args.get('q'))
-    graph = gen_histogram_graph(open_doc("beeMovie.txt"))
-
-    return sentence_from_graph(graph, sentence_len)
+markov_model = Markov_Model("sanitized_corpus.txt", 2)
 
 
+@app.route("/sentence", methods=['GET'])
+def gen_rand_sentence():
+    return markov_model.gen_sentence()
+
+
+# The root route doesn't do anything right now
 @app.route("/", methods=['GET'])
 def get_root():
-    return "Try using q as a parameter where q is the length of the sentence"
+    return "Try hitting /sentence"
 
 
 if __name__ == "__main__":
