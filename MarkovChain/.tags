@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Flask	server.py	/^from flask import Flask$/;"	i
+Graph	Markov_Model.py	/^from Structures.Graph import Graph$/;"	i
+Graph	Structures/Graph.py	/^class Graph:$/;"	c
+Markov_Model	Markov_Model.py	/^class Markov_Model:$/;"	c
+Markov_Model	server.py	/^from Markov_Model import Markov_Model$/;"	i
+Queue	Markov_Model.py	/^from Structures.Queue import Queue$/;"	i
+Queue	Structures/Queue.py	/^class Queue:$/;"	c
+_Node	Structures/Graph.py	/^class _Node:$/;"	c
+__init__	Markov_Model.py	/^    def __init__(self, corpus, order):$/;"	m	class:Markov_Model
+__init__	Structures/Graph.py	/^    def __init__(self):$/;"	m	class:Graph
+__init__	Structures/Graph.py	/^    def __init__(self, word):$/;"	m	class:_Node
+__init__	Structures/Queue.py	/^    def __init__(self, size_cap):$/;"	m	class:Queue
+_gen_markov_model	Markov_Model.py	/^    def _gen_markov_model(self, text):$/;"	m	class:Markov_Model
+_open_doc	Markov_Model.py	/^    def _open_doc(source_text):$/;"	m	class:Markov_Model
+_tokenize_line	Markov_Model.py	/^    def _tokenize_line(self, line):$/;"	m	class:Markov_Model
+app	server.py	/^app = Flask(__name__)$/;"	v
+enqueue	Structures/Queue.py	/^    def enqueue(self, item):$/;"	m	class:Queue
+gen_rand_sentence	server.py	/^def gen_rand_sentence():$/;"	f
+gen_sentence	Markov_Model.py	/^    def gen_sentence(self):$/;"	m	class:Markov_Model
+get_root	server.py	/^def get_root():$/;"	f
+insert_word	Structures/Graph.py	/^    def insert_word(self, word):$/;"	m	class:Graph
+markov_model	server.py	/^markov_model = Markov_Model("sanitized_corpus.txt", 2)$/;"	v
+os	server.py	/^import os$/;"	i
+print_graph	Structures/Graph.py	/^    def print_graph(self):$/;"	m	class:Graph
+print_node	Structures/Graph.py	/^    def print_node(self):$/;"	m	class:_Node
+rand_next_node	Structures/Graph.py	/^    def rand_next_node(self):$/;"	m	class:_Node
+rand_next_node	Structures/Graph.py	/^    def rand_next_node(self, node):$/;"	m	class:Graph
+random	Structures/Graph.py	/^import random$/;"	i
+re	Markov_Model.py	/^import re$/;"	i
+upsert_vert	Structures/Graph.py	/^    def upsert_vert(self, prev_word, subsequent_word):$/;"	m	class:Graph
+upsert_vert	Structures/Graph.py	/^    def upsert_vert(self, the_word, node_dict):$/;"	m	class:_Node
